@@ -40,15 +40,18 @@
             color: #000;
         }
 
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-color);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--gold);
-            border-radius: 4px;
+        /* --- CORREÇÃO: Barra de rolagem personalizada APENAS para PC --- */
+        @media (min-width: 992px) {
+            ::-webkit-scrollbar {
+                width: 6px;
+            }
+            ::-webkit-scrollbar-track {
+                background: var(--bg-color);
+            }
+            ::-webkit-scrollbar-thumb {
+                background: var(--gold);
+                border-radius: 4px;
+            }
         }
 
         html {
@@ -92,9 +95,7 @@
             filter: grayscale(0%) contrast(1);
         }
 
-        /* --- ANIMAÇÕES (NOVO) --- */
-        
-        /* Keyframes para entrada inicial */
+        /* --- ANIMAÇÕES --- */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -111,7 +112,6 @@
             100% { opacity: 1; transform: scale(1) rotate(0deg); }
         }
 
-        /* Classes utilitárias para Scroll Reveal */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -173,7 +173,6 @@
             width: 100%;
             z-index: 1000;
             background: transparent;
-            /* Animação Nav */
             opacity: 0;
             animation: fadeIn 1s forwards 0.2s;
         }
@@ -215,7 +214,6 @@
             z-index: 2;
         }
 
-        /* Animações Sequenciais do Hero */
         .hero-pretitle {
             font-family: 'Syne', sans-serif;
             font-size: 1.5rem;
@@ -226,7 +224,6 @@
             margin-bottom: -15px; 
             margin-left: 2px;
             text-transform: uppercase;
-            /* Animação */
             opacity: 0;
             animation: fadeInUp 0.8s forwards 0.4s;
         }
@@ -240,7 +237,6 @@
             -webkit-text-stroke: 2px var(--gold); 
             position: relative;
             font-weight: 800;
-            /* Animação */
             opacity: 0;
             animation: fadeInUp 0.8s forwards 0.6s;
         }
@@ -258,7 +254,6 @@
             color: var(--text-muted);
             border-left: 2px solid var(--gold);
             padding-left: 25px;
-            /* Animação */
             opacity: 0;
             animation: fadeInUp 0.8s forwards 0.8s;
         }
@@ -268,7 +263,6 @@
             width: 100%;
             position: relative;
             border-left: 1px solid var(--border-color);
-            /* Animação */
             opacity: 0;
             animation: fadeIn 1.5s forwards 1s;
         }
@@ -292,7 +286,6 @@
             color: var(--gold);
             z-index: 3;
             white-space: nowrap;
-            /* Animação */
             opacity: 0;
             animation: fadeIn 1s forwards 1.5s;
         }
@@ -468,7 +461,6 @@
             min-height: 500px;
             transition: 0.3s;
             position: relative;
-            /* Ajuste para animação */
             transform: translateY(20px); 
         }
 
@@ -547,7 +539,7 @@
             text-align: center;
         }
 
-        /* --- FOOTER (REESTRUTURADO) --- */
+        /* --- FOOTER --- */
         footer {
             border-top: 1px solid var(--border-color);
             padding: 5rem 5% 3rem;
@@ -624,7 +616,6 @@
             transition: transform 0.3s;
             mix-blend-mode: exclusion;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            /* Animação */
             opacity: 0;
             animation: popIn 0.8s forwards 1.8s;
         }
@@ -668,8 +659,9 @@
                 border-left: none;
                 padding-left: 0;
                 margin-top: 1.5rem;
-                border-top: 2px solid var(--gold);
-                padding-top: 25px;
+                /* CORREÇÃO: Removida a borda amarela (border-top) que aparecia no mobile */
+                border-top: none; 
+                padding-top: 10px;
                 width: 100%;
                 max-width: 350px;
             }
@@ -688,13 +680,11 @@
             
             .since-badge { display: none; }
 
-            /* Marquee Mobile (Loop) */
             .marquee-content span {
                 font-size: 1.3rem; 
                 margin-right: 2rem;
             }
 
-            /* Seções Gerais */
             .section-padding { padding: 4rem 5%; }
             .section-header {
                 flex-direction: column;
@@ -706,7 +696,6 @@
             .section-header h2 { font-size: 2.8rem; }
             .section-header p { text-align: left; max-width: 100%; }
 
-            /* Footer Mobile */
             footer {
                 padding-bottom: 7rem;
             }
