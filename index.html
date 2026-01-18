@@ -62,7 +62,6 @@
         html {
             scroll-behavior: smooth;
             font-size: 16px;
-            /* CORREÇÃO: Removido overflow-x daqui para destravar mobile */
             width: 100%;
         }
 
@@ -71,7 +70,6 @@
             color: var(--text-main);
             font-family: 'Space Grotesk', sans-serif;
             line-height: 1.5;
-            /* CORREÇÃO: Overflow apenas aqui */
             overflow-x: hidden;
             width: 100%;
             position: relative;
@@ -125,7 +123,6 @@
             opacity: 0;
             transform: translateY(40px);
             transition: all 0.8s ease-out;
-            /* OTIMIZAÇÃO: GPU */
             will-change: transform, opacity;
         }
 
@@ -209,7 +206,6 @@
 
         /* --- HERO SECTION --- */
         .hero {
-            /* CORREÇÃO: DVH para mobile */
             min-height: 100vh;
             min-height: 100dvh;
             display: grid;
@@ -318,7 +314,6 @@
             white-space: nowrap;
             display: inline-block;
             animation: marquee 35s linear infinite;
-            /* OTIMIZAÇÃO: Renderização via GPU */
             will-change: transform;
             transform: translateZ(0);
         }
@@ -918,8 +913,10 @@
         <div class="footer-content">
             <div class="footer-col">
                 <h4>LOCALIZAÇÃO</h4>
-                <p>R. Jurupari, 54 - Tabajara</p>
-                <p>Olinda - PE, 53350-200</p>
+                <a href="https://share.google/JtIurCxKxr3nwxKmn" target="_blank" class="social-link" style="display: block;">
+                    <p>R. Jurupari - Tabajara</p>
+                    <p>Olinda - PE, 53350-200</p>
+                </a>
             </div>
 
             <div class="footer-col">
