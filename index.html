@@ -20,9 +20,9 @@
             --text-muted: #555555;     /* Texto Secundário Cinza Escuro */
             --border-color: #e5e5e5;   /* Bordas Cinza Claro */
             --gold: #D4AF37;           /* Dourado Mantido */
-            --contrast: #000000;       /* Elementos de destaque (botões, nav) agora são pretos */
+            --contrast: #000000;       /* Elementos de destaque */
             --inverse-text: #ffffff;   /* Texto sobre fundos pretos */
-            --footer-bg-text: #f2f2f2; /* Cor do texto gigante de fundo (bem suave) */
+            --footer-bg-text: #f2f2f2; /* Cor do texto gigante de fundo */
             --card-bg: #ffffff;        /* Fundo dos cards */
             --section-alt: #f9f9f9;    /* Fundo alternativo para seções */
         }
@@ -31,6 +31,8 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased; /* Texto mais nítido */
+            -moz-osx-font-smoothing: grayscale;
         }
 
         a, button, .service-row {
@@ -43,29 +45,36 @@
             color: #000;
         }
 
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-color);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--gold);
-            border-radius: 4px;
+        /* Scrollbar PC */
+        @media (min-width: 992px) {
+            ::-webkit-scrollbar {
+                width: 6px;
+            }
+            ::-webkit-scrollbar-track {
+                background: var(--bg-color);
+            }
+            ::-webkit-scrollbar-thumb {
+                background: var(--gold);
+                border-radius: 4px;
+            }
         }
 
         html {
             scroll-behavior: smooth;
             font-size: 16px;
-            overflow-x: hidden;
+            /* CORREÇÃO: Removido overflow-x daqui para destravar mobile */
+            width: 100%;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: 'Space Grotesk', sans-serif;
-            overflow-x: hidden;
             line-height: 1.5;
+            /* CORREÇÃO: Overflow apenas aqui */
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
         }
 
         h1, h2, h3 {
@@ -86,7 +95,6 @@
             display: block;
         }
 
-        /* Filtro ajustado para o modo claro */
         .bw-filter {
             filter: grayscale(100%);
             transition: filter 0.5s;
@@ -117,6 +125,8 @@
             opacity: 0;
             transform: translateY(40px);
             transition: all 0.8s ease-out;
+            /* OTIMIZAÇÃO: GPU */
+            will-change: transform, opacity;
         }
 
         .reveal.active {
@@ -129,8 +139,8 @@
             display: inline-block;
             padding: 15px 40px;
             background: transparent;
-            border: 1px solid var(--contrast); /* Borda Preta */
-            color: var(--contrast);            /* Texto Preto */
+            border: 1px solid var(--contrast);
+            color: var(--contrast);
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
             text-transform: uppercase;
@@ -153,7 +163,6 @@
             transition: width 0.3s ease;
         }
 
-        /* Hover no botão claro: Texto fica preto (ou branco se preferir), fundo gold */
         .btn-glitch:hover {
             color: #000; 
             border-color: var(--gold);
@@ -188,7 +197,7 @@
             font-family: 'Syne', sans-serif;
             font-size: 0.95rem;
             letter-spacing: 1px;
-            color: var(--contrast); /* Menu Preto */
+            color: var(--contrast);
             padding: 10px 5px;
             transition: color 0.3s ease;
             font-weight: 700;
@@ -200,7 +209,9 @@
 
         /* --- HERO SECTION --- */
         .hero {
+            /* CORREÇÃO: DVH para mobile */
             min-height: 100vh;
+            min-height: 100dvh;
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
             align-items: center;
@@ -245,7 +256,7 @@
         
         .big-title span {
             display: block;
-            color: var(--contrast); /* Texto Preto */
+            color: var(--contrast);
             -webkit-text-stroke: 0;
         }
 
@@ -292,20 +303,24 @@
             animation: fadeIn 1s forwards 1.5s;
         }
 
-        /* --- MARQUEE (INVERTIDA) --- */
+        /* --- MARQUEE --- */
         .marquee-container {
             border-bottom: 1px solid var(--border-color);
             padding: 1rem 0;
             overflow: hidden;
-            background: var(--contrast); /* Fundo Preto */
-            color: var(--bg-color);      /* Texto Branco */
+            background: var(--contrast);
+            color: var(--bg-color);
             position: relative;
+            width: 100%;
         }
 
         .marquee-content {
             white-space: nowrap;
             display: inline-block;
             animation: marquee 35s linear infinite;
+            /* OTIMIZAÇÃO: Renderização via GPU */
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         .marquee-content span {
@@ -386,7 +401,6 @@
             align-items: center;
         }
 
-        /* Hover no serviço: fundo cinza claro */
         .service-row:active, .service-row:hover {
             padding-left: 1rem;
             background-color: #f7f7f7;
@@ -394,7 +408,7 @@
         }
         
         .service-row:active .service-name, .service-row:hover .service-name {
-            color: #000; /* Garante preto */
+            color: #000;
         }
 
         .service-name {
@@ -435,7 +449,7 @@
 
         /* --- PLANS --- */
         .plans-section {
-            background-color: var(--section-alt); /* Cinza muito claro */
+            background-color: var(--section-alt);
         }
 
         .plans-intro {
@@ -454,7 +468,6 @@
             margin-top: 3rem;
         }
 
-        /* Cartão Básico (Fundo Branco, Sombra Leve) */
         .plan-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -466,7 +479,7 @@
             transition: 0.3s;
             position: relative;
             transform: translateY(20px); 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.03); /* Sombra suave no branco */
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
         }
 
         @media (hover: hover) {
@@ -477,9 +490,8 @@
             }
         }
 
-        /* Cartão em Destaque (Invertido: Fundo Preto) */
         .plan-card.featured {
-            background-color: #000000; /* Preto sólido */
+            background-color: #000000;
             color: #ffffff;
             border: 2px solid var(--gold);
         }
@@ -488,7 +500,6 @@
         .plan-card.featured .plan-price { color: #ffffff; }
         .plan-card.featured .plan-features li { border-color: #333; color: #ccc; }
         
-        /* Botão no card preto (Borda Branca, Texto Branco) */
         .plan-card.featured .btn-glitch { border-color: #ffffff; color: #ffffff; }
         .plan-card.featured .btn-glitch::before { background: var(--gold); }
         .plan-card.featured .btn-glitch:hover { color: #000; border-color: var(--gold); }
@@ -510,14 +521,13 @@
 
         .plan-header h3 { font-size: 2rem; margin-bottom: 10px; }
         
-        /* Preço no card branco tem que ser PRETO ou GOLD. No card preto, BRANCO. */
         .plan-price {
             font-size: 3.8rem;
             font-weight: 400;
             margin-bottom: 1rem;
             display: block;
             line-height: 1;
-            color: var(--contrast); /* Padrão Preto */
+            color: var(--contrast);
             font-family: 'Abril Fatface', serif;
         }
         
@@ -549,7 +559,7 @@
             text-align: center;
         }
 
-        /* --- FOOTER (REESTRUTURADO) --- */
+        /* --- FOOTER --- */
         footer {
             border-top: 1px solid var(--border-color);
             padding: 5rem 5% 3rem;
@@ -571,7 +581,7 @@
             font-family: 'Syne', sans-serif;
             font-weight: 900;
             line-height: 0.85;
-            color: var(--footer-bg-text); /* Cinza super claro */
+            color: var(--footer-bg-text);
             letter-spacing: -3px;
             pointer-events: none;
             z-index: 1;
@@ -591,7 +601,7 @@
             font-size: 0.9rem;
             margin-bottom: 1.5rem;
             border: 1px solid var(--gold);
-            background-color: #ffffff; /* Fundo branco para ler sobre o texto grande */
+            background-color: #ffffff;
             color: var(--gold);
             display: inline-block;
             padding: 6px 12px;
@@ -606,13 +616,13 @@
         
         .social-link:hover { color: var(--gold); }
 
-        /* --- WHATSAPP STICKY (Preto no fundo branco) --- */
+        /* --- WHATSAPP STICKY --- */
         .whatsapp-sticky {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: #000000; /* Botão preto */
-            color: #ffffff;      /* Ícone branco */
+            background: #000000;
+            color: #ffffff;
             width: 70px;
             height: 70px;
             border-radius: 50%;
@@ -622,7 +632,6 @@
             font-size: 2rem;
             z-index: 999;
             transition: transform 0.3s;
-            /* mix-blend-mode removido para garantir visibilidade */
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             opacity: 0;
             animation: popIn 0.8s forwards 1.8s;
@@ -638,7 +647,9 @@
             
             .hero {
                 grid-template-columns: 1fr;
+                /* Fallback e Dynamic Viewport */
                 min-height: 90vh;
+                min-height: 90dvh;
                 text-align: center;
                 padding-top: 6rem;
                 gap: 2rem;
@@ -903,11 +914,11 @@
     </section>
 
     <footer id="contato" class="reveal">
-        
+
         <div class="footer-content">
             <div class="footer-col">
                 <h4>LOCALIZAÇÃO</h4>
-                <p>R. Jurupari - Tabajara</p>
+                <p>R. Jurupari, 54 - Tabajara</p>
                 <p>Olinda - PE, 53350-200</p>
             </div>
 
