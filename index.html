@@ -9,7 +9,8 @@
     <title>Barbearia Italo Michel</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Space+Grotesk:wght@300;400;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* --- CORE SETTINGS --- */
@@ -91,6 +92,37 @@
             filter: grayscale(0%) contrast(1);
         }
 
+        /* --- ANIMAÇÕES (NOVO) --- */
+        
+        /* Keyframes para entrada inicial */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.5) rotate(45deg); }
+            80% { transform: scale(1.1) rotate(0deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+
+        /* Classes utilitárias para Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* --- BUTTONS --- */
         .btn-glitch {
             display: inline-block;
@@ -132,7 +164,7 @@
         /* --- NAVIGATION --- */
         nav {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end; 
             align-items: center;
             padding: 2rem 5%;
             position: absolute;
@@ -141,15 +173,9 @@
             width: 100%;
             z-index: 1000;
             background: transparent;
-        }
-
-        .logo {
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            font-size: 1.5rem;
-            letter-spacing: -1px;
-            color: var(--white);
-            text-transform: uppercase;
+            /* Animação Nav */
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.2s;
         }
 
         .nav-links {
@@ -170,15 +196,6 @@
         .nav-links a:hover {
             color: var(--gold);
         }
-        
-        .menu-toggle {
-            display: none;
-            font-size: 1.8rem;
-            color: var(--white);
-            cursor: pointer;
-            z-index: 1001;
-            padding: 10px;
-        }
 
         /* --- HERO SECTION --- */
         .hero {
@@ -198,6 +215,22 @@
             z-index: 2;
         }
 
+        /* Animações Sequenciais do Hero */
+        .hero-pretitle {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            font-weight: 700;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: -15px; 
+            margin-left: 2px;
+            text-transform: uppercase;
+            /* Animação */
+            opacity: 0;
+            animation: fadeInUp 0.8s forwards 0.4s;
+        }
+
         .big-title {
             font-size: 10vw;
             line-height: 0.9;
@@ -207,6 +240,9 @@
             -webkit-text-stroke: 2px var(--gold); 
             position: relative;
             font-weight: 800;
+            /* Animação */
+            opacity: 0;
+            animation: fadeInUp 0.8s forwards 0.6s;
         }
         
         .big-title span {
@@ -222,6 +258,9 @@
             color: var(--text-muted);
             border-left: 2px solid var(--gold);
             padding-left: 25px;
+            /* Animação */
+            opacity: 0;
+            animation: fadeInUp 0.8s forwards 0.8s;
         }
 
         .hero-img {
@@ -229,6 +268,9 @@
             width: 100%;
             position: relative;
             border-left: 1px solid var(--border-color);
+            /* Animação */
+            opacity: 0;
+            animation: fadeIn 1.5s forwards 1s;
         }
 
         .hero-img img {
@@ -250,6 +292,9 @@
             color: var(--gold);
             z-index: 3;
             white-space: nowrap;
+            /* Animação */
+            opacity: 0;
+            animation: fadeIn 1s forwards 1.5s;
         }
 
         /* --- MARQUEE --- */
@@ -376,12 +421,20 @@
         }
 
         .service-price {
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-size: 1.6rem;
+            font-weight: 400;
             text-align: right;
-            font-family: 'Syne', sans-serif;
+            font-family: 'Abril Fatface', serif;
             color: var(--gold);
             white-space: nowrap;
+            letter-spacing: 1px;
+        }
+        
+        .price-consult {
+            font-size: 1rem !important; 
+            font-family: 'Space Grotesk', sans-serif !important; 
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         /* --- PLANS --- */
@@ -415,6 +468,8 @@
             min-height: 500px;
             transition: 0.3s;
             position: relative;
+            /* Ajuste para animação */
+            transform: translateY(20px); 
         }
 
         @media (hover: hover) {
@@ -453,21 +508,26 @@
         }
 
         .plan-header h3 { font-size: 2rem; margin-bottom: 10px; }
+        
         .plan-price {
-            font-size: 3.5rem;
-            font-weight: 800;
+            font-size: 3.8rem;
+            font-weight: 400;
             margin-bottom: 1rem;
             display: block;
             line-height: 1;
             color: var(--white);
+            font-family: 'Abril Fatface', serif;
         }
+        
         .plan-price small {
-            font-size: 1.1rem;
-            font-weight: 600;
-            display: block;
+            font-size: 1.3rem;
+            font-weight: 400;
+            display: inline-block;
             margin-top: 5px;
             color: var(--gold);
+            font-family: 'Abril Fatface', serif;
         }
+        
         .plan-features { margin: 2.5rem 0; }
         .plan-features li {
             list-style: none;
@@ -487,34 +547,50 @@
             text-align: center;
         }
 
-        /* --- FOOTER --- */
+        /* --- FOOTER (REESTRUTURADO) --- */
         footer {
             border-top: 1px solid var(--border-color);
             padding: 5rem 5% 3rem;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
             position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .footer-big-text {
-            grid-column: 1 / -1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-align: center;
             font-size: 13vw;
             font-family: 'Syne', sans-serif;
             font-weight: 900;
             line-height: 0.85;
             color: var(--footer-text);
-            text-align: center;
-            margin-bottom: 3rem;
             letter-spacing: -3px;
-            cursor: default;
-            word-wrap: break-word; 
+            pointer-events: none;
+            z-index: 1;
+            white-space: nowrap;
+            opacity: 0.6;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            width: 100%;
         }
 
         .footer-col h4 {
             font-size: 0.9rem;
             margin-bottom: 1.5rem;
             border: 1px solid var(--gold);
+            background-color: rgba(0,0,0,0.7);
             color: var(--gold);
             display: inline-block;
             padding: 6px 12px;
@@ -522,9 +598,10 @@
         }
 
         .footer-col p {
-            color: var(--text-muted);
+            color: #ccc;
             margin-bottom: 0.8rem;
             font-size: 1.05rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
         
         .social-link:hover { color: var(--gold); }
@@ -547,6 +624,9 @@
             transition: transform 0.3s;
             mix-blend-mode: exclusion;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            /* Animação */
+            opacity: 0;
+            animation: popIn 0.8s forwards 1.8s;
         }
         .whatsapp-sticky:hover { transform: scale(1.1) rotate(10deg); }
 
@@ -554,30 +634,8 @@
            RESPONSIVIDADE (MOBILE & TABLET)
         ========================================= */
         @media (max-width: 992px) {
-            /* Nav Mobile */
-            .menu-toggle { display: block; }
-            nav { padding: 1.5rem 5%; }
             
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 75%;
-                max-width: 300px;
-                height: 100vh;
-                background: #0a0a0a;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 2.5rem;
-                transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                border-left: 1px solid var(--border-color);
-                z-index: 1000;
-                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-            }
-
-            .nav-links.active { right: 0; }
-            .nav-links a { font-size: 1.4rem; padding: 10px 20px; }
+            nav { display: none; }
             
             /* Hero Mobile */
             .hero {
@@ -597,6 +655,8 @@
                 max-width: 100%;
             }
             
+            .hero-pretitle { margin-left: 0; font-size: 1.2rem; }
+
             .big-title { 
                 font-size: 13vw; 
                 margin-left: 0; 
@@ -643,24 +703,25 @@
                 margin-bottom: 3rem;
             }
             
-            /* Título ajustado para tablet/mobile */
             .section-header h2 { font-size: 2.8rem; }
             .section-header p { text-align: left; max-width: 100%; }
 
             /* Footer Mobile */
             footer {
+                padding-bottom: 7rem;
+            }
+            
+            .footer-content {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
                 gap: 3rem;
-                padding-bottom: 7rem;
             }
             
             .footer-big-text {
-                font-size: 12vw; 
-                margin-bottom: 2rem;
-                width: 100%;
+                font-size: 18vw; 
+                white-space: normal; 
                 word-wrap: break-word; 
                 line-height: 1;
             }
@@ -673,16 +734,11 @@
             }
         }
 
-        /* Ajustes Finos para Dispositivos Pequenos (iPhone SE, 12, Fold, etc) */
         @media (max-width: 400px) {
              .big-title { font-size: 12vw; }
-             
-             /* CORREÇÃO DO TÍTULO "MENU DE SERVIÇOS" */
-             /* Reduzido para 1.8rem para garantir que caiba em 375px/390px */
              .section-header h2 { font-size: 1.8rem; }
-             
              .plan-card { padding: 2rem 1.5rem; min-height: auto; }
-             .plan-price { font-size: 2.8rem; }
+             .plan-price { font-size: 3rem; }
              .btn-glitch { padding: 12px 25px; font-size: 0.9rem; width: 100%; }
         }
     </style>
@@ -691,10 +747,6 @@
 <body>
 
     <nav>
-        <a href="#" class="logo">ITALO MICHEL</a>
-        
-        <i class="fas fa-bars menu-toggle" id="mobile-menu-btn"></i>
-
         <div class="nav-links" id="nav-links">
             <a href="#servicos">SERVIÇOS</a>
             <a href="#planos">PLANOS</a>
@@ -704,6 +756,7 @@
 
     <header class="hero">
         <div class="hero-text">
+            <span class="hero-pretitle">BARBEARIA</span>
             <h1 class="big-title">
                 ITALO<br>
                 <span>MICHEL</span>
@@ -736,85 +789,67 @@
         </div>
     </div>
 
-    <section id="servicos" class="section-padding">
+    <section id="servicos" class="section-padding reveal">
         <div class="section-header">
             <h2>MENU DE<br>SERVIÇOS</h2>
             <p>Preços atualizados para sua melhor experiência.</p>
         </div>
 
         <div class="service-list">
-            <div class="category-title">COMBOS ESPECIAIS <span class="promo-tag">Sobrancelha Grátis</span></div>
-
-            <div class="service-row" onclick="openWhatsapp('Quero agendar Combo Degradê e Barba')">
-                <div class="service-name">DEGRADÊ + BARBA
-                    <span class="service-desc-small">Incluso Sobrancelha</span>
-                </div>
-                <div class="service-price">R$ 40,00</div>
-            </div>
-            <div class="service-row" onclick="openWhatsapp('Quero agendar Combo Tesoura e Barba')">
-                <div class="service-name">TESOURA + BARBA
-                    <span class="service-desc-small">Incluso Sobrancelha</span>
-                </div>
-                <div class="service-price">R$ 35,00</div>
-            </div>
-            <div class="service-row" onclick="openWhatsapp('Quero agendar Combo Social e Barba')">
-                <div class="service-name">SOCIAL + BARBA
-                    <span class="service-desc-small">Incluso Sobrancelha</span>
-                </div>
-                <div class="service-price">R$ 30,00</div>
-            </div>
-            <div class="service-row" onclick="openWhatsapp('Quero agendar Combo Máquina e Barba')">
-                <div class="service-name">MÁQUINA + BARBA
-                    <span class="service-desc-small">Incluso Sobrancelha</span>
-                </div>
-                <div class="service-price">R$ 25,00</div>
-            </div>
-
+            
             <div class="category-title">CORTES & BARBA</div>
 
             <div class="service-row" onclick="openWhatsapp('Quero agendar um Corte Degradê')">
                 <div class="service-name">CORTE DEGRADÊ</div>
                 <div class="service-price">R$ 30,00</div>
             </div>
-            <div class="service-row" onclick="openWhatsapp('Quero agendar um Corte Infantil')">
-                <div class="service-name">CORTE INFANTIL</div>
-                <div class="service-price">R$ 25,00</div>
-            </div>
             <div class="service-row" onclick="openWhatsapp('Quero agendar um Corte Tesoura')">
                 <div class="service-name">CORTE TESOURA</div>
-                <div class="service-price">R$ 25,00</div>
+                <div class="service-price">R$ 30,00</div>
             </div>
             <div class="service-row" onclick="openWhatsapp('Quero agendar um Corte Social')">
                 <div class="service-name">CORTE SOCIAL</div>
-                <div class="service-price">R$ 20,00</div>
+                <div class="service-price">R$ 25,00</div>
             </div>
             <div class="service-row" onclick="openWhatsapp('Quero agendar um Corte Máquina')">
                 <div class="service-name">CORTE MÁQUINA</div>
+                <div class="service-price">R$ 20,00</div>
+            </div>
+            <div class="service-row" onclick="openWhatsapp('Quero agendar uma Barba')">
+                <div class="service-name">BARBA</div>
                 <div class="service-price">R$ 15,00</div>
             </div>
-            <div class="service-row" onclick="openWhatsapp('Quero agendar uma Sobrancelha')">
-                <div class="service-name">SOBRANCELHA</div>
+            <div class="service-row" onclick="openWhatsapp('Quero agendar um Acabamento')">
+                <div class="service-name">ACABAMENTO</div>
                 <div class="service-price">R$ 10,00</div>
+            </div>
+
+            <div class="category-title">COMBOS ESPECIAIS <span class="promo-tag">Sobrancelha Grátis</span></div>
+
+            <div class="service-row" onclick="openWhatsapp('Quero agendar Combo Degradê e Barba')">
+                <div class="service-name">DEGRADÊ + BARBA
+                </div>
+                <div class="service-price">R$ 45,00</div>
             </div>
 
             <div class="category-title">COLORAÇÃO & QUÍMICA</div>
 
-            <div class="service-row" onclick="openWhatsapp('Quero agendar uma Pigmentação')">
+            <div class="service-row" onclick="openWhatsapp('Tenho interesse em Pigmentação, gostaria de saber o valor.')">
                 <div class="service-name">PIGMENTAÇÃO</div>
-                <div class="service-price">R$ 15,00</div>
+                <div class="service-price price-consult">A CONSULTAR</div>
             </div>
-            <div class="service-row" onclick="openWhatsapp('Quero agendar um Reflexo')">
+            <div class="service-row" onclick="openWhatsapp('Tenho interesse em Reflexo, gostaria de saber o valor.')">
                 <div class="service-name">REFLEXO</div>
-                <div class="service-price">R$ 25,00</div>
+                <div class="service-price price-consult">A CONSULTAR</div>
             </div>
-            <div class="service-row" onclick="openWhatsapp('Quero agendar um Platinado')">
+            <div class="service-row" onclick="openWhatsapp('Tenho interesse em Platinado, gostaria de saber o valor.')">
                 <div class="service-name">PLATINADO</div>
-                <div class="service-price">R$ 70,00</div>
+                <div class="service-price price-consult">A CONSULTAR</div>
             </div>
         </div>
     </section>
 
-    <section id="planos" class="section-padding plans-section">
+    <section id="planos" class="section-padding plans-section reveal">
         <div class="section-header">
             <div>
                 <span class="plans-intro">CLUBE DE ASSINATURA</span>
@@ -872,33 +907,34 @@
         </div>
     </section>
 
-    <footer id="contato">
-        <div class="footer-big-text">ITALO MICHEL</div>
+    <footer id="contato" class="reveal">
         
-        <div class="footer-col">
-            <h4>LOCALIZAÇÃO</h4>
-            <p>R. Jurupari - Tabajara</p>
-            <p>Olinda - PE, 53350-200</p>
-        </div>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>LOCALIZAÇÃO</h4>
+                <p>R. Jurupari - Tabajara</p>
+                <p>Olinda - PE, 53350-200</p>
+            </div>
 
-        <div class="footer-col">
-            <h4>HORÁRIOS</h4>
-            <p>Seg - Sab: 08:30 - 18:30</p>
-            <p>Dom: 09:00 - 12:00</p>
-        </div>
+            <div class="footer-col">
+                <h4>HORÁRIOS</h4>
+                <p>Seg - Sab: 08:30 - 18:30</p>
+                <p>Dom: 09:00 - 12:00</p>
+            </div>
 
-        <div class="footer-col">
-            <h4>CONTATO</h4>
-            <p>
-                <a href="tel:+5581987694379" class="social-link">
-                    <i class="fab fa-whatsapp" style="margin-right:8px;"></i>(81) 98769-4379
-                </a>
-            </p>
-            <p>
-                <a href="https://instagram.com/barbeariaitalo.michel" target="_blank" class="social-link">
-                    <i class="fab fa-instagram" style="margin-right:8px;"></i>@italobarbeiro.oficial
-                </a>
-            </p>
+            <div class="footer-col">
+                <h4>CONTATO</h4>
+                <p>
+                    <a href="tel:+5581987694379" class="social-link">
+                        <i class="fab fa-whatsapp" style="margin-right:8px;"></i>(81) 98769-4379
+                    </a>
+                </p>
+                <p>
+                    <a href="https://instagram.com/barbeariaitalo.michel" target="_blank" class="social-link">
+                        <i class="fab fa-instagram" style="margin-right:8px;"></i>@italobarbeiro.oficial
+                    </a>
+                </p>
+            </div>
         </div>
     </footer>
 
@@ -907,41 +943,32 @@
     </a>
 
     <script>
-        // Função auxiliar para abrir o WhatsApp nos serviços
         function openWhatsapp(message) {
             const phone = '5581987694379';
             const encodedMessage = encodeURIComponent(message);
             window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
         }
 
-        // Lógica do Menu Mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuBtn = document.getElementById('mobile-menu-btn');
-            const navLinks = document.getElementById('nav-links');
-            const navLinksItems = document.querySelectorAll('.nav-links a');
+        // LÓGICA DE ANIMAÇÃO NO SCROLL (INTERSECTION OBSERVER)
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Ativa quando 10% do elemento aparece
+            };
 
-            // Toggle (Abrir/Fechar) o menu ao clicar no ícone
-            menuBtn.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-                if (navLinks.classList.contains('active')) {
-                    menuBtn.classList.remove('fa-bars');
-                    menuBtn.classList.add('fa-times');
-                } else {
-                    menuBtn.classList.remove('fa-times');
-                    menuBtn.classList.add('fa-bars');
-                }
-            });
-
-            // Fechar o menu automaticamente ao clicar em qualquer link
-            navLinksItems.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                        menuBtn.classList.remove('fa-times');
-                        menuBtn.classList.add('fa-bars');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Opcional: Para de observar após animar uma vez
+                        observer.unobserve(entry.target);
                     }
                 });
-            });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => observer.observe(el));
         });
     </script>
 
