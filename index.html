@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Barbearia Italo Michel - Cortes de alta precisão, combos e planos mensais em Olinda-PE.">
-    <meta name="theme-color" content="#050505"> 
+    <meta name="theme-color" content="#ffffff"> 
     <title>Barbearia Italo Michel</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,15 +13,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Space+Grotesk:wght@300;400;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* --- CORE SETTINGS --- */
+        /* --- PALETA INVERTIDA (LIGHT MODE) --- */
         :root {
-            --bg-color: #050505;
-            --text-main: #ffffff;
-            --text-muted: #888888;
-            --border-color: #2a2a2a;
-            --gold: #D4AF37;
-            --white: #ffffff;
-            --footer-text: #262626; 
+            --bg-color: #ffffff;       /* Fundo Branco */
+            --text-main: #000000;      /* Texto Preto */
+            --text-muted: #555555;     /* Texto Secundário Cinza Escuro */
+            --border-color: #e5e5e5;   /* Bordas Cinza Claro */
+            --gold: #D4AF37;           /* Dourado Mantido */
+            --contrast: #000000;       /* Elementos de destaque (botões, nav) agora são pretos */
+            --inverse-text: #ffffff;   /* Texto sobre fundos pretos */
+            --footer-bg-text: #f2f2f2; /* Cor do texto gigante de fundo (bem suave) */
+            --card-bg: #ffffff;        /* Fundo dos cards */
+            --section-alt: #f9f9f9;    /* Fundo alternativo para seções */
         }
 
         * {
@@ -40,18 +43,15 @@
             color: #000;
         }
 
-        /* --- CORREÇÃO: Barra de rolagem personalizada APENAS para PC --- */
-        @media (min-width: 992px) {
-            ::-webkit-scrollbar {
-                width: 6px;
-            }
-            ::-webkit-scrollbar-track {
-                background: var(--bg-color);
-            }
-            ::-webkit-scrollbar-thumb {
-                background: var(--gold);
-                border-radius: 4px;
-            }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 4px;
         }
 
         html {
@@ -86,13 +86,14 @@
             display: block;
         }
 
+        /* Filtro ajustado para o modo claro */
         .bw-filter {
-            filter: grayscale(100%) contrast(1.1);
+            filter: grayscale(100%);
             transition: filter 0.5s;
         }
 
         .bw-filter:hover {
-            filter: grayscale(0%) contrast(1);
+            filter: grayscale(0%);
         }
 
         /* --- ANIMAÇÕES --- */
@@ -128,8 +129,8 @@
             display: inline-block;
             padding: 15px 40px;
             background: transparent;
-            border: 1px solid var(--white);
-            color: var(--white);
+            border: 1px solid var(--contrast); /* Borda Preta */
+            color: var(--contrast);            /* Texto Preto */
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
             text-transform: uppercase;
@@ -152,8 +153,9 @@
             transition: width 0.3s ease;
         }
 
+        /* Hover no botão claro: Texto fica preto (ou branco se preferir), fundo gold */
         .btn-glitch:hover {
-            color: #000;
+            color: #000; 
             border-color: var(--gold);
         }
 
@@ -186,7 +188,7 @@
             font-family: 'Syne', sans-serif;
             font-size: 0.95rem;
             letter-spacing: 1px;
-            color: white;
+            color: var(--contrast); /* Menu Preto */
             padding: 10px 5px;
             transition: color 0.3s ease;
             font-weight: 700;
@@ -243,7 +245,7 @@
         
         .big-title span {
             display: block;
-            color: var(--white);
+            color: var(--contrast); /* Texto Preto */
             -webkit-text-stroke: 0;
         }
 
@@ -290,13 +292,13 @@
             animation: fadeIn 1s forwards 1.5s;
         }
 
-        /* --- MARQUEE --- */
+        /* --- MARQUEE (INVERTIDA) --- */
         .marquee-container {
             border-bottom: 1px solid var(--border-color);
             padding: 1rem 0;
             overflow: hidden;
-            background: var(--white);
-            color: var(--bg-color);
+            background: var(--contrast); /* Fundo Preto */
+            color: var(--bg-color);      /* Texto Branco */
             position: relative;
         }
 
@@ -384,21 +386,22 @@
             align-items: center;
         }
 
+        /* Hover no serviço: fundo cinza claro */
         .service-row:active, .service-row:hover {
             padding-left: 1rem;
-            background-color: #0a0a0a;
+            background-color: #f7f7f7;
             border-bottom-color: var(--gold);
         }
         
         .service-row:active .service-name, .service-row:hover .service-name {
-            color: var(--white);
+            color: #000; /* Garante preto */
         }
 
         .service-name {
             font-size: 1.3rem;
             font-weight: 700;
             text-transform: uppercase;
-            color: #e0e0e0;
+            color: var(--contrast);
             transition: 0.3s;
             line-height: 1.2;
         }
@@ -432,7 +435,7 @@
 
         /* --- PLANS --- */
         .plans-section {
-            background-color: #080808;
+            background-color: var(--section-alt); /* Cinza muito claro */
         }
 
         .plans-intro {
@@ -451,8 +454,9 @@
             margin-top: 3rem;
         }
 
+        /* Cartão Básico (Fundo Branco, Sombra Leve) */
         .plan-card {
-            background-color: #111;
+            background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             padding: 3rem 2rem;
             display: flex;
@@ -462,27 +466,32 @@
             transition: 0.3s;
             position: relative;
             transform: translateY(20px); 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03); /* Sombra suave no branco */
         }
 
         @media (hover: hover) {
             .plan-card:hover {
                 transform: translateY(-10px);
                 border-color: var(--gold);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.08);
             }
         }
 
+        /* Cartão em Destaque (Invertido: Fundo Preto) */
         .plan-card.featured {
-            background-color: #ffffff;
-            color: var(--bg-color);
+            background-color: #000000; /* Preto sólido */
+            color: #ffffff;
             border: 2px solid var(--gold);
         }
         
         .plan-card.featured .plan-header h3,
-        .plan-card.featured .plan-price { color: var(--bg-color); }
-        .plan-card.featured .plan-features li { border-color: #ddd; color: #333; }
-        .plan-card.featured .btn-glitch { border-color: var(--bg-color); color: var(--bg-color); }
-        .plan-card.featured .btn-glitch::before { background: var(--bg-color); }
-        .plan-card.featured .btn-glitch:hover { color: var(--white); }
+        .plan-card.featured .plan-price { color: #ffffff; }
+        .plan-card.featured .plan-features li { border-color: #333; color: #ccc; }
+        
+        /* Botão no card preto (Borda Branca, Texto Branco) */
+        .plan-card.featured .btn-glitch { border-color: #ffffff; color: #ffffff; }
+        .plan-card.featured .btn-glitch::before { background: var(--gold); }
+        .plan-card.featured .btn-glitch:hover { color: #000; border-color: var(--gold); }
 
         .badge-top {
             position: absolute;
@@ -494,20 +503,21 @@
             font-weight: bold;
             font-family: 'Syne', sans-serif;
             text-transform: uppercase;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             transform: rotate(5deg);
             z-index: 2;
         }
 
         .plan-header h3 { font-size: 2rem; margin-bottom: 10px; }
         
+        /* Preço no card branco tem que ser PRETO ou GOLD. No card preto, BRANCO. */
         .plan-price {
             font-size: 3.8rem;
             font-weight: 400;
             margin-bottom: 1rem;
             display: block;
             line-height: 1;
-            color: var(--white);
+            color: var(--contrast); /* Padrão Preto */
             font-family: 'Abril Fatface', serif;
         }
         
@@ -525,8 +535,8 @@
             list-style: none;
             margin-bottom: 1.2rem;
             padding-bottom: 1rem;
-            border-bottom: 1px dashed #333;
-            color: #bbb;
+            border-bottom: 1px dashed var(--border-color);
+            color: var(--text-muted);
             font-size: 1.1rem;
             display: flex;
             align-items: center;
@@ -539,7 +549,7 @@
             text-align: center;
         }
 
-        /* --- FOOTER --- */
+        /* --- FOOTER (REESTRUTURADO) --- */
         footer {
             border-top: 1px solid var(--border-color);
             padding: 5rem 5% 3rem;
@@ -561,12 +571,11 @@
             font-family: 'Syne', sans-serif;
             font-weight: 900;
             line-height: 0.85;
-            color: var(--footer-text);
+            color: var(--footer-bg-text); /* Cinza super claro */
             letter-spacing: -3px;
             pointer-events: none;
             z-index: 1;
             white-space: nowrap;
-            opacity: 0.6;
         }
 
         .footer-content {
@@ -582,7 +591,7 @@
             font-size: 0.9rem;
             margin-bottom: 1.5rem;
             border: 1px solid var(--gold);
-            background-color: rgba(0,0,0,0.7);
+            background-color: #ffffff; /* Fundo branco para ler sobre o texto grande */
             color: var(--gold);
             display: inline-block;
             padding: 6px 12px;
@@ -590,21 +599,20 @@
         }
 
         .footer-col p {
-            color: #ccc;
+            color: var(--text-muted);
             margin-bottom: 0.8rem;
             font-size: 1.05rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
         
         .social-link:hover { color: var(--gold); }
 
-        /* --- WHATSAPP STICKY --- */
+        /* --- WHATSAPP STICKY (Preto no fundo branco) --- */
         .whatsapp-sticky {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: var(--white);
-            color: var(--bg-color);
+            background: #000000; /* Botão preto */
+            color: #ffffff;      /* Ícone branco */
             width: 70px;
             height: 70px;
             border-radius: 50%;
@@ -614,8 +622,8 @@
             font-size: 2rem;
             z-index: 999;
             transition: transform 0.3s;
-            mix-blend-mode: exclusion;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            /* mix-blend-mode removido para garantir visibilidade */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             opacity: 0;
             animation: popIn 0.8s forwards 1.8s;
         }
@@ -628,7 +636,6 @@
             
             nav { display: none; }
             
-            /* Hero Mobile */
             .hero {
                 grid-template-columns: 1fr;
                 min-height: 90vh;
@@ -659,9 +666,8 @@
                 border-left: none;
                 padding-left: 0;
                 margin-top: 1.5rem;
-                /* CORREÇÃO: Removida a borda amarela (border-top) que aparecia no mobile */
-                border-top: none; 
-                padding-top: 10px;
+                border-top: 2px solid var(--gold);
+                padding-top: 25px;
                 width: 100%;
                 max-width: 350px;
             }
@@ -938,19 +944,17 @@
             window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
         }
 
-        // LÓGICA DE ANIMAÇÃO NO SCROLL (INTERSECTION OBSERVER)
         document.addEventListener('DOMContentLoaded', () => {
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
-                threshold: 0.1 // Ativa quando 10% do elemento aparece
+                threshold: 0.1 
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
-                        // Opcional: Para de observar após animar uma vez
                         observer.unobserve(entry.target);
                     }
                 });
